@@ -73,10 +73,9 @@ import org.mindswap.pellet.jena.PelletInfGraph;
 import uk.ac.manchester.cs.owl.owlapi.OWLLiteralImplNoCompression;
 import android.util.Log;
 
-
-//import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
-import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+//import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+import org.mindswap.pellet.jena.*;
 import com.clarkparsia.pellet.sparqldl.jena.SparqlDLExecutionFactory;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -139,8 +138,8 @@ public class OntologyManager {
 
 	private OWLReasoner processReasonerProperties() {
 		OWLReasoner reasoner;
-		final OWLReasonerFactory reasonerFactory = PelletReasonerFactory
-				.getInstance();
+		final OWLReasonerFactory reasonerFactory = (OWLReasonerFactory) PelletReasonerFactory
+				.theInstance();
 		reasoner = reasonerFactory.createNonBufferingReasoner(ontology);
 		return reasoner;
 	}
@@ -1190,7 +1189,7 @@ public class OntologyManager {
 			
 			// First create a Jena ontology model backed by the Pellet reasoner
 			// (note, the Pellet reasoner is required)
-			OntModel m = ModelFactory.createOntologyModel();
+			OntModel m = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 	
 			// Then read the data from the file into the ontology model
 			m.read( ontology );
