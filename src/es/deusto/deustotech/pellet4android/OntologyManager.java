@@ -1182,7 +1182,10 @@ public class OntologyManager {
 		return "TraditionalOntologyImpl{" + "ontology=" + ontology
 				+ ", reasoner=" + reasoner + ", manager=" + manager + '}';
 	}
-	public void executeQueries(String ontology, String[] queries) {
+	
+	
+	
+	public int executeQueries(String ontology, String[] queries) {
 		
 		for ( int i = 0; i < queries.length ; i++ ) {
 			String query = queries[i];
@@ -1215,6 +1218,7 @@ public class OntologyManager {
 			// And an empty line to make it pretty
 			System.out.println();
 		}
+		return 1;
 	}
 
 }
